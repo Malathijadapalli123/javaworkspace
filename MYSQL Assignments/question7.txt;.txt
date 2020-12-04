@@ -1,0 +1,66 @@
+Question 7
+
+7.Write a query to display the customer’s firstname who have multiple accounts (atleast  2 accounts).  Display the records sorted in ascending order based on customer's firstname.
+SELECT firstname
+FROM customer_master INNER JOIN account_master
+ON customer_master.customer_number=account_master.customer_number GROUP BY firstname
+having count(firstname)>=2 order by firstname; 
+
+
+
+
+
+
+
+
+mysql> select * from customer_master;
++-----------------+-----------+-----------+---------+
+| customer_number | firstname | lastname  | city    |
++-----------------+-----------+-----------+---------+
+|              10 | Malathi   | jadapalli | Chennai |
+|              11 | Bhargavi  | Kanchi    | nellore |
+|              12 | Monica    | gungi     | Chennai |
+|              13 | harika    | kothapeta | nellore |
+|              14 | hari      | kotha     | chennai |
+|              15 | niharikaa | peta      | kadapa  |
+|              16 | hii       | hello     | chennai |
+|              18 | manohar   | jadapalli | nellore |
+|              19 | mahesh    | uppala    | karnool |
++-----------------+-----------+-----------+---------+
+
+
+
+mysql> select * from account_master;
++-----------------+---------------------+----------------+
+| customer_number | accont_opening_date | account_number |
++-----------------+---------------------+----------------+
+|              10 | 2020-12-20          | 1267687858     |
+|              11 | 2019-11-10          | 1256327858     |
+|              13 | 2012-10-30          | 1267687858     |
+|              14 | 2010-09-19          | 2147687858     |
+|              15 | 2010-11-07          | 1289487858     |
+|              16 | 2009-10-20          | 6547687858     |
+|              18 | 2020-10-12          |                |
+|              19 | 2019-11-20          |                |
+|              10 | 2020-02-10          | 1267675886     |
+|              13 | 2017-09-23          | 6576523101     |
+|              14 | 2010-08-21          | 8666355107     |
++-----------------+---------------------+----------------+
+
+  
+
+OUTPUT:
+
+
+mysql> SELECT firstname
+    -> FROM customer_master INNER JOIN account_master
+    -> ON customer_master.customer_number=account_master.customer_number GROUP BY firstname
+    -> having count(firstname)>=2 order by firstname;
++-----------+
+| firstname |
++-----------+
+| hari      |
+| harika    |
+| Malathi   |
++-----------+
+

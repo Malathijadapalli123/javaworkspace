@@ -1,0 +1,88 @@
+Question-1
+
+
+1.Write a query to display account number, customer’s number, customer’s firstname,lastname,account opening date.
+Display the records sorted in ascending order based on account number.
+
+SELECT account_number,am.customer_number,firstname,lastname,account_opening_date
+FROM customer_master cm INNER JOIN account_master am
+ON cm.customer_number=am.customer_number
+ORDER BY account_number
+
+
+
+
+mysql> CREATE TABLE customer_master(customer_number int AUTO_INCREMENT PRIMARY KEY,
+    ->                               firstname VARCHAR(255) NOT NULL,
+    ->                               lastname VARCHAR(255) NOT NULL,
+    ->                               city VARCHAR(255));
+
+mysql> desc customer_master;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| customer_number | int          | NO   | PRI | NULL    | auto_increment |
+| firstname     | varchar(255) | NO   |     | NULL    |                |
+| lastname      | varchar(255) | NO   |     | NULL    |                |
+| city          | varchar(255) | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+mysql> select * from customer_master;
++---------------+---------------+-----------+-----------+
+| customer_number | firstname     | lastname  | city      |
++---------------+---------------+-----------+-----------+
+|            10 | Malathi       | jadapalli | Nellore   |
+|            11 | Bhargavi      | Kanchi    | Nellore   |
+|            12 | Munipriya     | narra     | kadapa    |
+|            13 | Vijayalakshmi | Dega      | Anantapur |
+|            14 | Prasanna      | Avvaru    | Prakasam  |
+|            15 | Pooja         | Peta      | Eluru     |
+|            16 | Nikhitha      | Venkata   | karnool   |
+|            17 | Manasa        | Uppala    | Vizag     |
++---------------+---------------+-----------+-----------+
+
+mysql> CREATE TABLE account_master(customer_number int AUTO_INCREMENT PRIMARY KEY,
+    ->                             account_opening_date date NOT NULL,
+    ->                             account_number VARCHAR(255) NOT NULL);
+
+mysql> desc account_master;
++----------------------+--------------+------+-----+---------+----------------+
+| Field                | Type         | Null | Key | Default | Extra          |
++----------------------+--------------+------+-----+---------+----------------+
+| customer_number      | int          | NO   | PRI | NULL    | auto_increment |
+| account_opening_date | date         | NO   |     | NULL    |                |
+| account_number       | varchar(255) | NO   |     | NULL    |                |
++----------------------+--------------+------+-----+---------+----------------+
+
+
+mysql> select * from account_master;
++-----------------+----------------------+----------------+
+| customer_number | account_opening_date | account_number |
++-----------------+----------------------+----------------+
+|              10 | 1999-06-20           | 1234567891     |
+|              11 | 2000-12-20           | 1225567891     |
+|              12 | 2015-11-24           | 1234167891     |
+|              13 | 2020-11-30           | 1234562341     |
+|              15 | 2020-03-19           | 1234673892     |
+|              16 | 2016-05-20           | 5837726651     |
+|              17 | 2017-09-23           | 6636565278     |
++-----------------+----------------------+----------------+
+
+
+OUTPUT:
+
+
+mysql> SELECT account_number,am.customer_number,firstname,lastname,account_opening_date
+    -> FROM customer_master cm INNER JOIN account_master am
+    -> ON cm.customer_number=am.customer_number
+    -> ORDER BY account_number;
++----------------+-----------------+---------------+-----------+----------------------+
+| account_number | customer_number | firstname     | lastname  | account_opening_date |
++----------------+-----------------+---------------+-----------+----------------------+
+| 1225567891     |              11 | Bhargavi      | Kanchi    | 2000-12-20           |
+| 1234167891     |              12 | Munipriya     | narra     | 2015-11-24           |
+| 1234562341     |              13 | Vijayalakshmi | Dega      | 2020-11-30           |
+| 1234567891     |              10 | Malathi       | jadapalli | 1999-06-20           |
+| 1234673892     |              15 | Pooja         | Peta      | 2020-03-19           |
+| 5837726651     |              16 | Nikhitha      | Venkata   | 2016-05-20           |
+| 6636565278     |              17 | Manasa        | Uppala    | 2017-09-23           |
++----------------+-----------------+---------------+-----------+----------------------+

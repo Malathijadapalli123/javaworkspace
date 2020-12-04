@@ -1,0 +1,33 @@
+Question 3
+
+
+3.Write a query to display  the customer number, customer firstname,account number for the customer’s whose accounts were created after 15th of any month.
+Display the records sorted in ascending order based on customer number and then by account number.
+
+SELECT  am.customer_number, firstname, account_number
+FROM customer_master cm INNER JOIN account_master am
+ON cm.customer_number=am.customer_number
+WHERE extract(day from accont_opening_date)>15
+ORDER BY am.customer_number, account_number 
+
+
+
+
+
+
+OUTPUT:
+
+
+mysql> SELECT  am.customer_number, firstname, account_number
+    -> FROM customer_master cm INNER JOIN account_master am
+    -> ON cm.customer_number=am.customer_number
+    -> WHERE extract(day from accont_opening_date)>15
+    -> ORDER BY am.customer_number, account_number ;
++-----------------+-----------+----------------+
+| customer_number | firstname | account_number |
++-----------------+-----------+----------------+
+|              10 | Malathi   | 1267687858     |
+|              13 | harika    | 1267687858     |
+|              14 | hari      | 2147687858     |
+|              16 | hii       | 6547687858     |
++-----------------+-----------+----------------+

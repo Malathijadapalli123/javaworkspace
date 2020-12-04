@@ -1,0 +1,57 @@
+Question 2
+
+
+
+
+
+2.Write a query to display the number of customer’s from Chennai. Give the count an alias name of Cust_Count.
+SELECT count(customer_number) Cust_Count
+FROM customer_master
+WHERE customer_city='Chennai'
+
+
+mysql> select * from customer_master;
++-----------------+-----------+-----------+---------+
+| customer_number | firstname | lastname  | city    |
++-----------------+-----------+-----------+---------+
+|              10 | Malathi   | jadapalli | Chennai |
+|              11 | Bhargavi  | Kanchi    | nellore |
+|              12 | Monica    | gungi     | Chennai |
+|              13 | harika    | kothapeta | nellore |
+|              14 | hari      | kotha     | chennai |
+|              15 | niharikaa | peta      | kadapa  |
+|              16 | hii       | hello     | chennai |
++-----------------+-----------+-----------+---------+
+
+
+
+
+
+
+mysql> select * from account_master;
++-----------------+---------------------+----------------+
+| customer_number | accont_opening_date | account_number |
++-----------------+---------------------+----------------+
+|              10 | 2020-12-20          | 1267687858     |
+|              11 | 2019-11-10          | 1256327858     |
+|              13 | 2012-10-30          | 1267687858     |
+|              14 | 2010-09-19          | 2147687858     |
+|              15 | 2010-11-07          | 1289487858     |
+|              16 | 2009-10-20          | 6547687858     |
++-----------------+---------------------+----------------+
+
+
+
+
+OUTPUT:
+
+
+mysql> SELECT count(customer_number) Cust_Count
+    -> FROM customer_master
+    -> WHERE city='Chennai';
++------------+
+| Cust_Count |
++------------+
+|          4 |
++------------+
+
